@@ -30,4 +30,4 @@ const PORT = process.env.PORT || 5000;
 
 app.get("/api", (req, res) => res.send("You are connected to API UMKM Cimahi"));
 
-app.listen(PORT, () => console.log(`Server is Running on port ` + PORT));
+app.listen("https://be-umkm.herokuapp.com/", () => console.log(`Server is Running on port ` + "https://be-umkm.herokuapp.com/"));
