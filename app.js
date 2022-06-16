@@ -11,7 +11,7 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ credentials: true, origin: "https://elaborate-zabaione-0cb361.netlify.app",  optionSuccessStatus: 200 }));
+app.use(cors({ credentials: true, origin: process.env.CLIENT_URL,  optionSuccessStatus: 200 }));
 
 
 app.use("/api", apiRoutes);
