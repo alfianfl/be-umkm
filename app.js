@@ -11,7 +11,7 @@ const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({ credentials: true, origin: process.env.CLIENT_URL,  optionSuccessStatus: 200 }));
 
 
 app.use("/api", apiRoutes);
@@ -30,4 +30,4 @@ const PORT = process.env.PORT || 5000;
 
 app.get("/api", (req, res) => res.send("You are connected to API UMKM Cimahi"));
 
-app.listen("https://be-umkm.herokuapp.com/", () => console.log(`Server is Running on port ` + "https://be-umkm.herokuapp.com/"));
+app.listen(PORT, () => console.log(`Server is Running on port ` + PORT));
