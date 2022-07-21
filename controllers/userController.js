@@ -4,7 +4,8 @@ var CryptoJS = require("crypto-js");
 
 exports.register = async (req, res) => {
   const cekemail = await UserUMKM.findOne({ email: req.body.email });
-  if (!cekemail) {
+  const ceknik = await UserUMKM.findOne({ nik: req.body.nik });
+  if (!cekemail && !ceknik) {
     let newUser = new UserUMKM({
       username: req.body.username,
       password: CryptoJS.AES.encrypt(
@@ -28,9 +29,15 @@ exports.register = async (req, res) => {
       res.status(500).json(err);
     }
   } else {
-    res.status(200).json({
-      message: "Email telah digunakan",
-    });
+    if(cekemail){
+      res.status(200).json({
+        message: "Email telah digunakan",
+      });
+    } else if(ceknik){
+      res.status(200).json({
+        message: "NIK telah digunakan",
+      });
+    }
   }
 };
 
