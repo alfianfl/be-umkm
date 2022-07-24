@@ -1,5 +1,5 @@
-const Toko = require("../models/Toko");
-const Produk = require("../models/Produk");
+const Toko = require('../models/Toko');
+const Produk = require('../models/Produk');
 
 const cloudinary = require('../services/cloudinary');
 
@@ -18,18 +18,18 @@ const index = async (req, res) => {
       });
     });
 
-    // Toko.find()
-    // .limit(size)
-    // .then((data) => {
-    //   res.json({
-    //     data
-    //   });
-    // })
-    // .catch((error) => {
-    //   res.json({
-    //     message: error
-    //   });
-    // });
+  // Toko.find()
+  // .limit(size)
+  // .then((data) => {
+  //   res.json({
+  //     data
+  //   });
+  // })
+  // .catch((error) => {
+  //   res.json({
+  //     message: error
+  //   });
+  // });
 };
 
 //Get Toko By Id
@@ -117,14 +117,20 @@ const addToko = async (req, res) => {
 
 const deleteToko = async (req, res) => {
   let dataID = req.params.id;
-  const produkToko = await Toko.findById(dataID);
 
   try {
     await Produk.deleteMany({
-      id_toko: produkToko.id_toko,
-    });
+      id_toko: dataID
+    })
+      .then(function () {
+        console.log('Data deleted'); // Success
+      })
+      .catch(function (error) {
+        console.log(error); // Failure
+      });
+
     await Toko.findByIdAndDelete(dataID);
-    res.status(200).json({ message: "Berhasil menghapus data toko" });
+    res.status(200).json({ message: 'Berhasil menghapus data toko' });
   } catch (error) {
     res.json({
       message: error
@@ -188,7 +194,7 @@ const editProfilToko = async (req, res) => {
 
   try {
     await Toko.findByIdAndUpdate(dataID, {
-      $set: dataUpdate,
+      $set: dataUpdate
     });
     res.status(200).json({ message: 'Berhasil menrubah data' });
   } catch (error) {
@@ -214,7 +220,7 @@ const editPromoToko = async (req, res) => {
 
   try {
     await Toko.findByIdAndUpdate(dataID, {
-      $set: dataUpdate,
+      $set: dataUpdate
     });
     res.status(200).json({ message: 'Berhasil menrubah data' });
   } catch (error) {
@@ -240,7 +246,7 @@ const editSosmedToko = async (req, res) => {
 
   try {
     await Toko.findByIdAndUpdate(dataID, {
-      $set: dataUpdate,
+      $set: dataUpdate
     });
     res.status(200).json({ message: 'Berhasil menrubah data' });
   } catch (error) {
@@ -265,7 +271,7 @@ const editAlamatToko = async (req, res) => {
 
   try {
     await Toko.findByIdAndUpdate(dataID, {
-      $set: dataUpdate,
+      $set: dataUpdate
     });
     res.status(200).json({ message: 'Berhasil merubah data' });
   } catch (error) {
@@ -287,7 +293,7 @@ const editAdministrasiToko = async (req, res) => {
 
   try {
     await Toko.findByIdAndUpdate(dataID, {
-      $set: dataUpdate,
+      $set: dataUpdate
     });
     res.status(200).json({ message: 'Berhasil merubah data' });
   } catch (error) {
@@ -312,7 +318,7 @@ const editLegalitasToko = async (req, res) => {
 
   try {
     await Toko.findByIdAndUpdate(dataID, {
-      $set: dataUpdate,
+      $set: dataUpdate
     });
     res.status(200).json({ message: 'Berhasil merubah data' });
   } catch (error) {
@@ -329,7 +335,7 @@ const editPelatihanToko = async (req, res) => {
 
   try {
     await Toko.findByIdAndUpdate(dataID, {
-      $set: dataUpdate,
+      $set: dataUpdate
     });
     res.status(200).json({ message: 'Berhasil merubah data' });
   } catch (error) {
