@@ -12,6 +12,9 @@ pelatihanRouter.post(
   pelatihanController.addPelatihan
 );
 
+//Get Pelatihan By Id
+pelatihanRouter.get("/:id", auth.verify, pelatihanController.getPelatihanById);
+
 //get all pelatihan
 pelatihanRouter.get("/", pelatihanController.index);
 

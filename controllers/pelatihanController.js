@@ -16,6 +16,19 @@ const index = async (req, res) => {
     });
 };
 
+//getPelatihanById
+const getPelatihanById = async (req, res) => {
+  let dataID = req.params.id;
+  try {
+    const response = await Pelatihan.findById(dataID);
+    res.status(200).json({ data: response });
+  } catch (error) {
+    res.json({
+      message: error
+    });
+  }
+}
+
 //Add Data
 const addPelatihan = async (req, res) => {
   if (req.file) {
@@ -47,4 +60,5 @@ const addPelatihan = async (req, res) => {
 module.exports = {
   index,
   addPelatihan,
+  getPelatihanById
 };

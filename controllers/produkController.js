@@ -8,9 +8,9 @@ const { json } = require("body-parser");
 dotenv.config();
 
 const index = async (req, res) => {
-  const { page = 1 } = req.query;
-  const limit = 9;
+  let size = req.query.dataSize;
   Produk.find()
+    .limit(size)
     .then((response) => {
       res.json({
         response,
